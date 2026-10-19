@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder: foto principal">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcebee"/><stop offset="1" stop-color="#ece6d8"/></linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <path d="M0 720 C120 690 200 750 320 720 C440 690 520 750 640 720 C720 700 770 715 800 725 V1000 H0 Z" fill="#c3dde3"/>
+  <path d="M0 800 C120 770 200 830 320 800 C440 770 520 830 640 800 C720 780 770 795 800 805 V1000 H0 Z" fill="#9bc4cf" opacity=".7"/>
+  <path d="M400 130 C500 260 548 470 534 660 C526 760 480 820 400 820 C320 820 274 760 266 660 C252 470 300 260 400 130 Z" fill="#f7f3ea" stroke="#d9be95" stroke-width="7"/>
+  <path d="M400 165 V800" stroke="#d9be95" stroke-width="6" stroke-linecap="round"/>
+  <text x="400" y="930" text-anchor="middle" font-family="system-ui, sans-serif" font-size="26" letter-spacing="5" fill="#7d8a8f">FOTO PRINCIPAL</text>
+</svg>

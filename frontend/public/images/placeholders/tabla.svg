@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-label="Placeholder: foto de tabla">
+  <rect width="600" height="800" fill="#ece6d8"/>
+  <path d="M300 90 C390 210 432 390 420 560 C412 650 372 706 300 706 C228 706 188 650 180 560 C168 390 210 210 300 90 Z" fill="#f7f3ea" stroke="#9bc4cf" stroke-width="6"/>
+  <path d="M300 118 V688" stroke="#d9be95" stroke-width="5" stroke-linecap="round"/>
+  <g stroke="#9bc4cf" stroke-width="5" stroke-linecap="round"><path d="M268 640 v22"/><path d="M332 640 v22"/><path d="M300 656 v26"/></g>
+  <text x="300" y="768" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" letter-spacing="4" fill="#8a8f93">FOTO DE TABLA</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Placeholder: foto del taller">
+  <rect width="800" height="600" fill="#ece6d8"/>
+  <rect x="0" y="430" width="800" height="170" fill="#e1d3b9"/>
+  <path d="M110 330 C250 270 560 270 690 330 C560 392 250 392 110 330 Z" fill="#f7f3ea" stroke="#9bc4cf" stroke-width="6"/>
+  <path d="M130 331 H670" stroke="#d9be95" stroke-width="5" stroke-linecap="round"/>
+  <path d="M170 392 L150 470 M630 392 L650 470" stroke="#bfa57a" stroke-width="8" stroke-linecap="round"/>
+  <text x="400" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" letter-spacing="4" fill="#8a8f93">FOTO DEL TALLER</text>
+</svg>
