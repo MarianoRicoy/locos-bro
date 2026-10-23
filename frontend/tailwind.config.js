@@ -9,8 +9,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // Satoshi (Light / Bold / Black). Se carga en app/layout.tsx.
-        sans: ["var(--font-satoshi)", "ui-sans-serif", "system-ui", "sans-serif"],
+        // Poppins (texto) y ABeeZee (títulos). Se cargan en app/layout.tsx.
+        sans: ["var(--font-poppins)", "ui-sans-serif", "system-ui", "sans-serif"],
+        titulo: ["var(--font-abeezee)", "var(--font-poppins)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         // Tokens semánticos (shadcn). Todos aceptan modificadores de opacidad: bg-primary/10
@@ -47,20 +48,18 @@ module.exports = {
           DEFAULT: "hsl(var(--popover) / <alpha-value>)",
           foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
         },
-
-        // Paleta de taller de surf
-        mar: {
-          DEFAULT: "hsl(var(--mar) / <alpha-value>)", // azul-verdoso profundo
-          claro: "hsl(var(--mar-claro) / <alpha-value>)", // agua clara / sea glass
-        },
-        resina: "hsl(var(--resina) / <alpha-value>)", // ámbar de resina
-        madera: "hsl(var(--madera) / <alpha-value>)", // madera clara (balsa / paulownia)
-        arena: "hsl(var(--arena) / <alpha-value>)", // arena / blanco hueso
       },
+      // Bordes afilados: nada de radios grandes. Lo máximo es rounded-sm (2px).
       borderRadius: {
+        none: "0px",
+        sm: "var(--radius)",
+        DEFAULT: "var(--radius)",
+        md: "var(--radius)",
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        xl: "var(--radius)",
+        "2xl": "var(--radius)",
+        "3xl": "var(--radius)",
+        full: "9999px",
       },
     },
   },

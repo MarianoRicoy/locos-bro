@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { ABeeZee, Poppins } from "next/font/google";
 import "./globals.css";
 
 import { SiteChrome } from "@/components/features/site-chrome";
 import { siteConfig } from "@/lib/site-config";
 
-const satoshi = localFont({
-  src: [
-    { path: "../public/fonts/Satoshi-Light.otf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Satoshi-Bold.otf", weight: "700", style: "normal" },
-    { path: "../public/fonts/Satoshi-Black.otf", weight: "900", style: "normal" },
-  ],
-  variable: "--font-satoshi",
+// Texto corrido, botones y h1: Poppins (varios pesos).
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+// Títulos h2–h4: ABeeZee (solo existe en peso 400).
+const abeezee = ABeeZee({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-abeezee",
   display: "swap",
 });
 
@@ -30,8 +36,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-AR" suppressHydrationWarning className={`${satoshi.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans">
+    <html lang="es-AR" suppressHydrationWarning className={`${poppins.variable} ${abeezee.variable} h-full bg-black antialiased`}>
+      <body className="flex min-h-full flex-col bg-black font-sans text-white antialiased">
         <SiteChrome>{children}</SiteChrome>
       </body>
     </html>

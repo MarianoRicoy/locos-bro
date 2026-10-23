@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
+import { Etiqueta } from "@/components/features/etiqueta";
 import { Button } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button-variants";
 
@@ -30,9 +31,9 @@ export default function Error({
   return (
     <main className="relative flex min-h-[70vh] flex-1 flex-col items-center justify-center px-6 py-20 text-center">
       <div className="mx-auto max-w-lg space-y-6">
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-resina">Aviso</p>
+        <Etiqueta>Aviso</Etiqueta>
 
-        <h1 className="text-4xl text-foreground md:text-6xl">Algo salió mal</h1>
+        <h1 className="text-5xl md:text-7xl">Algo salió mal</h1>
 
         <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
           Ocurrió un inconveniente inesperado. Podés intentar recargar la sección o volver al inicio.

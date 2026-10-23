@@ -1,21 +1,36 @@
+import Image from "next/image";
+
+import { LOGOS } from "@/lib/media";
 import { siteConfig } from "@/lib/site-config";
 
 type LogoProps = {
+  /** "negro" sobre fondos claros, "blanco" sobre fondos oscuros. */
+  variante?: "negro" | "blanco";
+  /** Controla el tamaño. El logo es cuadrado: fijá solo la altura y dejá `w-auto`. */
   className?: string;
+  alt?: string;
+  /** Precarga la imagen (usar solo en el logo del navbar, visible sin scroll). */
+  preload?: boolean;
 };
 
 /**
- * Wordmark provisorio de Locos Bro.
- * Para usar el logo real: reemplazar el contenido por un <Image src="/images/logo.svg" ... />.
+ * Logo oficial de Locos Bro.
+ * El PNG original es de 3072 px: se declara 256 px para que Next genere versiones livianas (1x / 2x).
  */
-export function Logo({ className = "" }: LogoProps) {
+export function Logo({
+  variante = "negro",
+  className = "h-14 w-auto",
+  alt = siteConfig.name,
+  preload = false,
+}: LogoProps) {
   return (
-    <span className={`inline-flex flex-col leading-none ${className}`}>
-      <span className="text-2xl font-black uppercase tracking-tight">Locos Bro</span>
-      <span className="mt-1 text-[0.62rem] font-bold uppercase tracking-[0.32em] opacity-70">
-        Surfboards · Miramar
-      </span>
-      <span className="sr-only">{siteConfig.name}</span>
-    </span>
+    <Image
+      alt={alt}
+      className={className}
+      height={256}
+      preload={preload}
+      src={LOGOS[variante]}
+      width={256}
+    />
   );
 }

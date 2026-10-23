@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -18,10 +18,14 @@ type ModeloOpcion = {
   medidas: string;
 };
 
+type PedidoInicial = "tal-cual" | "a-medida";
+
 type ContactoFormProps = {
   modelos: ModeloOpcion[];
   /** Slug del modelo a preseleccionar (viene de /contacto?modelo=slug). */
   modeloInicial?: string;
+  /** Viene de la ficha: la tabla tal cual, o esa misma tabla adaptada. */
+  pedidoInicial?: PedidoInicial;
 };
 
 const NIVELES = ["Principiante", "Intermedio", "Avanzado"] as const;
@@ -39,9 +43,10 @@ const esquema = z.object({
 type ValoresFormulario = z.infer<typeof esquema>;
 type Canal = "whatsapp" | "email";
 
-const claseCampo = "h-11 rounded-md bg-background px-3 text-base md:text-base";
+const claseCampo =
+  "h-11 rounded-sm border-2 border-foreground bg-background px-3 text-base aria-invalid:border-dashed aria-invalid:bg-neutral-200 md:text-base";
 const claseSelect =
-  "h-11 w-full rounded-md border border-input bg-background px-3 text-base text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30";
+  "h-11 w-full rounded-sm border-2 border-foreground bg-background px-3 text-base text-foreground outline-none transition-colors aria-invalid:border-dashed aria-invalid:bg-neutral-200 focus-visible:ring-2 focus-visible:ring-neutral-500";
 
 function FieldError({ id, mensaje }: { id: string; mensaje?: string }) {
   if (!mensaje) {
@@ -49,18 +54,38 @@ function FieldError({ id, mensaje }: { id: string; mensaje?: string }) {
   }
 
   return (
-    <p className="feedback-message text-sm text-destructive" id={id} role="alert">
+    <p
+      className="feedback-message border-l-4 border-foreground pl-2 text-sm font-semibold"
+      id={id}
+      role="alert"
+    >
       {mensaje}
     </p>
   );
 }
 
-export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
+function mensajeInicial(pedido: PedidoInicial | undefined, nombre?: string): string {
+  if (!pedido || !nombre) {
+    return "";
+  }
+
+  if (pedido === "tal-cual") {
+    return `Quiero la ${nombre} tal cual está en el quiver.`;
+  }
+
+  return `Quiero la ${nombre} adaptada a mis medidas, mi nivel y las olas que surfeo.`;
+}
+
+export function ContactoForm({ modelos, modeloInicial, pedidoInicial }: ContactoFormProps) {
   const [enviado, setEnviado] = useState<{ canal: Canal; url: string } | null>(null);
+  const nombreInicial = modelos.find((item) => item.slug === modeloInicial)?.nombre;
+
+  const textoInicial = mensajeInicial(pedidoInicial, nombreInicial);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ValoresFormulario>({
     resolver: zodResolver(esquema),
@@ -71,9 +96,18 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
       modelo: modeloInicial ?? "",
       alturaPeso: "",
       nivel: "",
-      mensaje: "",
+      mensaje: textoInicial,
     },
   });
+
+  useEffect(() => {
+    if (modeloInicial) {
+      setValue("modelo", modeloInicial);
+    }
+    if (textoInicial) {
+      setValue("mensaje", textoInicial);
+    }
+  }, [modeloInicial, setValue, textoInicial]);
 
   function armarMensaje(valores: ValoresFormulario): string {
     const modelo = modelos.find((item) => item.slug === valores.modelo);
@@ -156,7 +190,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="telefono">
-            Teléfono <span className="font-normal text-muted-foreground">(opcional)</span>
+            Teléfono <span className="font-normal normal-case tracking-normal text-muted-foreground">(opcional)</span>
           </Label>
           <Input
             autoComplete="tel"
@@ -173,6 +207,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
             aria-describedby={errors.modelo ? "modelo-error" : undefined}
             aria-invalid={Boolean(errors.modelo)}
             className={claseSelect}
+            defaultValue={modeloInicial ?? ""}
             id="modelo"
             {...register("modelo")}
           >
@@ -193,7 +228,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="alturaPeso">
-            Altura y peso <span className="font-normal text-muted-foreground">(opcional)</span>
+            Altura y peso <span className="font-normal normal-case tracking-normal text-muted-foreground">(opcional)</span>
           </Label>
           <Input
             className={claseCampo}
@@ -205,7 +240,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
 
         <div className="space-y-2">
           <Label htmlFor="nivel">
-            Nivel de surf <span className="font-normal text-muted-foreground">(opcional)</span>
+            Nivel de surf <span className="font-normal normal-case tracking-normal text-muted-foreground">(opcional)</span>
           </Label>
           <select className={claseSelect} id="nivel" {...register("nivel")}>
             <option value="">Sin especificar</option>
@@ -223,7 +258,8 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
         <Textarea
           aria-describedby={errors.mensaje ? "mensaje-error" : undefined}
           aria-invalid={Boolean(errors.mensaje)}
-          className="min-h-32 rounded-md bg-background px-3 py-2.5 text-base md:text-base"
+          className="min-h-32 rounded-sm border-2 border-foreground bg-background px-3 py-2.5 text-base aria-invalid:border-dashed aria-invalid:bg-neutral-200 md:text-base"
+          defaultValue={textoInicial}
           id="mensaje"
           placeholder="Medidas que tenés en mente, tipo de olas, colores, fecha en que la necesitás…"
           {...register("mensaje")}
@@ -249,7 +285,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
       {enviado ? (
         <p
           aria-live="polite"
-          className="feedback-message rounded-md bg-mar-claro/40 px-4 py-3 text-sm text-foreground"
+          className="feedback-message rounded-sm border-2 border-foreground bg-foreground px-4 py-3 text-sm text-background"
           role="status"
         >
           {enviado.canal === "whatsapp"
@@ -257,7 +293,7 @@ export function ContactoForm({ modelos, modeloInicial }: ContactoFormProps) {
             : "Abrimos tu aplicación de correo con la consulta lista para enviar. "}
           Si no se abrió,{" "}
           <a
-            className="font-bold text-primary underline underline-offset-2"
+            className="font-semibold text-white underline underline-offset-2 hover:text-neutral-300"
             href={enviado.url}
             rel="noopener noreferrer"
             target={enviado.canal === "whatsapp" ? "_blank" : undefined}

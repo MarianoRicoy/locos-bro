@@ -6,19 +6,19 @@ import { FacebookIcon, InstagramIcon, WhatsappIcon } from "@/components/features
 import { ENLACES_PRINCIPALES } from "@/lib/navigation";
 import { siteConfig } from "@/lib/site-config";
 
-const claseEnlace = "transition-colors hover:text-accent";
+const claseEnlace = "underline-offset-4 transition-colors hover:underline";
 const claseBotonSocial =
-  "inline-flex size-10 items-center justify-center rounded-full border border-primary-foreground/25 transition-colors hover:border-accent hover:text-accent";
+  "inline-flex size-10 items-center justify-center rounded-sm border-2 border-white transition-colors hover:bg-white hover:text-black";
 
 export function SiteFooter() {
   const { contact, social } = siteConfig;
 
   return (
-    <footer className="mt-auto bg-primary text-primary-foreground">
+    <footer className="mt-auto border-t-4 border-white bg-black text-white">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 md:grid-cols-12 md:px-8 md:py-16">
         <section className="space-y-4 md:col-span-4">
-          <Logo />
-          <p className="max-w-xs text-sm leading-relaxed text-primary-foreground/75">
+          <Logo alt="Locos Bro Surfboards" className="h-24 w-auto md:h-28" variante="blanco" />
+          <p className="max-w-xs text-sm leading-relaxed text-white/75">
             Fábrica de tablas de surf en Miramar. Shape, laminado y terminación hechos a mano en
             nuestro taller.
           </p>
@@ -61,7 +61,7 @@ export function SiteFooter() {
         </section>
 
         <nav aria-label="Navegación del pie de página" className="space-y-4 md:col-span-3 md:col-start-6">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Navegación</h3>
+          <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">Navegación</h3>
           <ul className="space-y-2 text-sm">
             {ENLACES_PRINCIPALES.map((enlace) => (
               <li key={enlace.href}>
@@ -74,10 +74,10 @@ export function SiteFooter() {
         </nav>
 
         <section className="space-y-4 md:col-span-4">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Taller y contacto</h3>
+          <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">Taller y contacto</h3>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3">
-              <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
+              <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-neutral-400" />
               <a
                 className={claseEnlace}
                 href={contact.location.mapsUrl}
@@ -88,7 +88,7 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <Phone aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
+              <Phone aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-neutral-400" />
               <a
                 className={claseEnlace}
                 href={contact.whatsapp.url}
@@ -99,14 +99,14 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <Mail aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
+              <Mail aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-neutral-400" />
               <a className={claseEnlace} href={`mailto:${contact.email}`}>
                 {contact.email}
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <Clock aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
-              <span className="text-primary-foreground/75">
+              <Clock aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-neutral-400" />
+              <span className="text-white/75">
                 {contact.horarios.map((linea) => (
                   <span className="block" key={linea}>
                     {linea}
@@ -118,8 +118,8 @@ export function SiteFooter() {
         </section>
       </div>
 
-      <div className="border-t border-primary-foreground/15">
-        <p className="mx-auto w-full max-w-7xl px-4 py-5 text-xs text-primary-foreground/60 md:px-8">
+      <div className="border-t border-white/20">
+        <p className="mx-auto w-full max-w-7xl px-4 py-5 text-xs text-white/60 md:px-8">
           © {new Date().getFullYear()} {siteConfig.name}. Hecho a mano en Miramar, Argentina.
         </p>
       </div>

@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function ConstruccionPage() {
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-center gap-8 bg-primary px-6 text-center text-primary-foreground">
-      <Logo className="scale-125 items-center" />
-      <p className="max-w-md text-lg text-primary-foreground/80">
+    <main className="flex min-h-screen w-full flex-col items-center justify-center gap-8 bg-black px-6 text-center text-white">
+      <Logo alt="Locos Bro Surfboards" className="h-48 w-auto md:h-64" preload variante="blanco" />
+      <p className="max-w-md text-lg text-white/75">
         Estamos shapeando el sitio nuevo. Muy pronto vamos a estar de vuelta.
       </p>
       <a
-        className="text-sm font-bold uppercase tracking-[0.2em] text-accent hover:underline"
+        className="text-sm font-medium tracking-wide text-neutral-300 hover:text-white hover:underline"
         href={siteConfig.social.instagram.url}
         rel="noopener noreferrer"
         target="_blank"

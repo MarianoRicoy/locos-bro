@@ -3,25 +3,33 @@ import { cva } from "class-variance-authority"
 /**
  * Variantes del botón, en un módulo SIN "use client" para poder usarlas
  * también desde Server Components (por ejemplo sobre un <Link>).
+ *
+ * Estética: bordes afilados, borde grueso, texto semibold en minúsculas normales.
  */
 export const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-md border bg-clip-padding text-sm font-bold tracking-[0.08em] uppercase whitespace-nowrap transition-all duration-200 outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-sm border-2 text-sm font-semibold tracking-wide whitespace-nowrap transition-colors duration-150 outline-none select-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
+        // Negro sólido; en hover vira a gris industrial.
         default:
-          "border-primary bg-primary text-primary-foreground hover:bg-primary/90",
-        accent:
-          "border-accent bg-accent text-accent-foreground hover:bg-accent/90",
+          "border-foreground bg-foreground text-background hover:border-neutral-800 hover:bg-neutral-800",
+        // Blanco sólido (para secciones negras); en hover vira a gris claro.
+        blanco:
+          "border-background bg-background text-foreground hover:border-neutral-300 hover:bg-neutral-300",
+        // Contorno negro (para fondos claros): se invierte en hover.
         outline:
-          "border-foreground/25 bg-transparent text-foreground hover:border-foreground hover:bg-foreground/5",
+          "border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background",
+        // Contorno blanco (para secciones negras): se invierte en hover.
+        invertido:
+          "border-background bg-transparent text-background hover:bg-background hover:text-foreground",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/70",
+          "border-secondary bg-secondary text-secondary-foreground hover:border-foreground",
         ghost:
-          "border-transparent text-foreground hover:bg-muted",
+          "border-transparent text-foreground hover:bg-secondary",
         destructive:
-          "border-transparent bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:ring-destructive/20",
-        link: "border-transparent text-primary underline-offset-4 hover:underline",
+          "border-neutral-800 bg-neutral-800 text-white hover:bg-neutral-700",
+        link: "border-transparent text-foreground underline-offset-4 hover:underline",
       },
       size: {
         default: "h-11 gap-2 px-6",

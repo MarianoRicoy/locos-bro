@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 import { CustomOrderCta } from "@/components/features/custom-order-cta";
 import { FabricaTeaser } from "@/components/features/fabrica-teaser";
-import { HeroSection } from "@/components/features/hero-section";
+import { HistoriaTeaser } from "@/components/features/historia-teaser";
+import { LogoPortada } from "@/components/features/logo-portada";
 import { QuiverDestacado } from "@/components/features/quiver-destacado";
 import { obtenerMetadataHome } from "@/lib/seo";
 
@@ -12,14 +13,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function Home() {
   return (
-    <>
-      <HeroSection />
-
-      <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-20 px-4 py-16 md:gap-28 md:px-8 md:py-24">
-        <QuiverDestacado />
-        <FabricaTeaser />
-        <CustomOrderCta />
-      </main>
-    </>
+    <main className="flex-1">
+      {/* HeroSection (Lucas y Chori) quedó afuera. Si no vuelve, borrar components/features/hero-section.tsx. */}
+      <LogoPortada />
+      <QuiverDestacado />
+      <HistoriaTeaser />
+      <FabricaTeaser />
+      <CustomOrderCta />
+    </main>
   );
 }

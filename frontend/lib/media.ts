@@ -9,7 +9,13 @@
  */
 
 export const PLACEHOLDER_BASE64 =
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzAnIGhlaWdodD0nMzAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHJlY3Qgd2lkdGg9JzMwJyBoZWlnaHQ9JzMwJyBmaWxsPScjZTdlMmQ2Jy8+PC9zdmc+";
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMzAnIGhlaWdodD0nMzAnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHJlY3Qgd2lkdGg9JzMwJyBoZWlnaHQ9JzMwJyBmaWxsPScjZDRkNGQ0Jy8+PC9zdmc+";
+
+/** Logo oficial (cuadrado, PNG 2048 px con transparencia). "negro" para fondos claros, "blanco" para fondos negros. */
+export const LOGOS = {
+  negro: "/images/placeholders/logo-negro.png",
+  blanco: "/images/placeholders/logo-blanco.png",
+} as const;
 
 export type ImagenSitio = {
   src: string;
@@ -17,21 +23,41 @@ export type ImagenSitio = {
 };
 
 export const IMAGENES = {
-  /** Portada del home (formato vertical 4:5 recomendado). */
+  /** Portada del home (foto cuadrada de Lucas y Chori en el taller). */
   hero: {
-    src: "/images/placeholders/hero.svg",
-    alt: "Tabla de surf recién laminada en el taller de Locos Bro, Miramar",
+    src: "/images/fotos/lucas-y-chori.jpg",
+    alt: "Lucas y Chori en el taller de Locos Bro, junto a una tabla recién shapeada",
   },
   /** Foto genérica de tabla (formato vertical 3:4). */
   tabla: {
     src: "/images/placeholders/tabla.svg",
     alt: "Tabla de surf de Locos Bro Surfboards",
   },
+  /** Foto de la sección "Nuestra historia" del home. */
+  historiaHome: {
+    src: "/images/fotos/lucas-1.jpg",
+    alt: "Lucas surfeando un tubo en una tabla de Locos Bro",
+  },
+  /** Fotos de archivo para /historia (formato horizontal 4:3 recomendado). */
+  historia: [
+    {
+      src: "/images/fotos/tablas-pared.jpg",
+      alt: "Tablas de Locos Bro apoyadas contra la pared del taller",
+    },
+    {
+      src: "/images/placeholders/taller.svg",
+      alt: "Foto de archivo: sesión de surf en Miramar",
+    },
+    {
+      src: "/images/placeholders/taller.svg",
+      alt: "Foto de archivo: tablas de Locos Bro apoyadas en la playa",
+    },
+  ],
   /** Fotos del taller / fábrica (formato horizontal 4:3 recomendado). */
   taller: [
     {
-      src: "/images/placeholders/taller.svg",
-      alt: "Shaper trabajando un blank en el taller de Locos Bro",
+      src: "/images/fotos/chori-1.jpg",
+      alt: "Chori shapeando una tabla en el taller de Locos Bro",
     },
     {
       src: "/images/placeholders/taller.svg",

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Section } from "@/components/features/section";
 import { SectionHeading } from "@/components/features/section-heading";
 import { buttonVariants } from "@/components/ui/button-variants";
 import { IMAGENES, PLACEHOLDER_BASE64 } from "@/lib/media";
@@ -13,8 +14,12 @@ const PILARES = [
 
 export function FabricaTeaser() {
   return (
-    <section aria-labelledby="fabrica-titulo" className="grid items-center gap-10 md:grid-cols-2 md:gap-14">
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary ring-1 ring-border">
+    <Section
+      aria-labelledby="fabrica-titulo"
+      innerClassName="grid items-center gap-10 md:grid-cols-2 md:gap-14"
+      tone="oscuro"
+    >
+      <div className="relative aspect-[17/9] w-full overflow-hidden rounded-sm border-2 border-white bg-neutral-900">
         <Image
           alt={IMAGENES.taller[0].alt}
           blurDataURL={PLACEHOLDER_BASE64}
@@ -29,24 +34,24 @@ export function FabricaTeaser() {
       <div className="space-y-8">
         <SectionHeading
           description="Somos una fábrica local de Miramar. Acá la tabla no sale de un molde: sale de un bloque, de unas manos y de muchas horas de taller."
-          eyebrow="Fábrica (Miramar)"
+          eyebrow="La Fábrica"
           id="fabrica-titulo"
           title="El taller donde nace cada tabla"
         />
 
         <ul className="grid gap-5 xl:grid-cols-3">
           {PILARES.map((pilar) => (
-            <li className="space-y-1.5 border-l-2 border-resina pl-4" key={pilar.titulo}>
-              <p className="font-black text-foreground">{pilar.titulo}</p>
-              <p className="text-sm leading-relaxed text-muted-foreground">{pilar.texto}</p>
+            <li className="space-y-1.5 border-l-4 border-white pl-4" key={pilar.titulo}>
+              <p className="font-titulo text-lg">{pilar.titulo}</p>
+              <p className="text-sm leading-relaxed text-white/70">{pilar.texto}</p>
             </li>
           ))}
         </ul>
 
-        <Link className={buttonVariants({ variant: "outline" })} href="/fabrica">
+        <Link className={buttonVariants({ variant: "invertido" })} href="/fabrica">
           Conocé la fábrica
         </Link>
       </div>
-    </section>
+    </Section>
   );
 }

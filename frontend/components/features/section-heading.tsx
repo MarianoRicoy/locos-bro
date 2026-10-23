@@ -1,3 +1,5 @@
+import { Etiqueta } from "@/components/features/etiqueta";
+
 type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
@@ -8,6 +10,10 @@ type SectionHeadingProps = {
   className?: string;
 };
 
+/**
+ * Hereda el color de la sección (negro sobre claro, blanco sobre oscuro).
+ * Las fuentes de los títulos (h1 Poppins bold, h2–h4 ABeeZee) vienen de globals.css.
+ */
 export function SectionHeading({
   eyebrow,
   title,
@@ -17,17 +23,15 @@ export function SectionHeading({
   className = "",
 }: SectionHeadingProps) {
   return (
-    <div className={`space-y-3 ${className}`}>
+    <div className={`space-y-4 ${className}`}>
       {eyebrow ? (
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">{eyebrow}</p>
+        <Etiqueta>{eyebrow}</Etiqueta>
       ) : null}
-      <Tag className="text-3xl leading-[1.05] text-foreground md:text-5xl" id={id}>
+      <Tag className="text-4xl leading-[1.08] md:text-6xl" id={id}>
         {title}
       </Tag>
       {description ? (
-        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-          {description}
-        </p>
+        <p className="max-w-2xl text-base leading-relaxed opacity-75 md:text-lg">{description}</p>
       ) : null}
     </div>
   );

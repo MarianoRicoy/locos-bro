@@ -3,12 +3,23 @@ export interface EnlaceNavegacion {
   href: string;
 }
 
-/** Secciones principales del sitio (navbar + footer). */
+/** Secciones principales del sitio (pie de página). */
 export const ENLACES_PRINCIPALES: EnlaceNavegacion[] = [
   { label: "Inicio", href: "/" },
-  { label: "Modelos / Quiver", href: "/modelos" },
-  { label: "Fábrica (Miramar)", href: "/fabrica" },
-  { label: "Custom Orders / Contacto", href: "/contacto" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Historia", href: "/historia" },
+  { label: "Quiver", href: "/modelos" },
+  { label: "La Fábrica", href: "/fabrica" },
+  { label: "Contacto", href: "/contacto" },
+];
+
+/** Barra superior. Las redes no van acá. */
+export const ENLACES_BARRA: EnlaceNavegacion[] = [
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Quiver", href: "/modelos" },
+  { label: "La Fábrica", href: "/fabrica" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export function esRutaActiva(pathname: string, href: string): boolean {
