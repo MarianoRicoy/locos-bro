@@ -237,6 +237,29 @@ h1 {
   }
 }
 
+/* ---------- Visor de archivo (/nosotros) ---------- */
+
+/* Fundido suave al cambiar de foto/video en el visor tipo cine. */
+.visor-pieza {
+  animation: visor-fade 450ms ease-out both;
+}
+
+@keyframes visor-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visor-pieza {
+    animation: none;
+  }
+}
+
 /* ---------- Feedback de formulario ---------- */
 
 .feedback-message {

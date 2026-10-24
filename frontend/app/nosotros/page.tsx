@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
+import { ReproductorArchivo } from "@/components/features/reproductor-archivo";
 import { Section } from "@/components/features/section";
+import { VisorArchivo } from "@/components/features/visor-archivo";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -27,18 +29,29 @@ const PARRAFOS = [
 export default function NosotrosPage() {
   return (
     <main className="flex-1">
-      <Section as="header" innerClassName="space-y-6 py-16 md:py-28" tone="oscuro">
-        <h1 className="text-xl font-normal text-white">— Nuestra historia</h1>
-        <p className="max-w-3xl text-4xl leading-[1.15] sm:text-5xl md:text-6xl">
-          Más de 22 años en el agua, en el mismo galpón.
+      <Section as="header" innerClassName="space-y-10 py-20 md:py-36" tone="oscuro">
+        <h1 className="text-xl font-normal text-white md:text-2xl">— Nuestra historia</h1>
+        <p className="max-w-4xl text-5xl leading-[1.25] sm:text-6xl md:text-7xl">
+          De la playa al taller.
         </p>
       </Section>
 
-      <Section aria-label="Nuestra historia completa" tone="claro">
-        <div className="max-w-3xl space-y-6 text-lg leading-relaxed">
-          {PARRAFOS.map((parrafo) => (
-            <p key={parrafo.slice(0, 24)}>{parrafo}</p>
-          ))}
+      <Section
+        aria-label="Nuestra historia completa"
+        innerClassName="py-10 md:py-14"
+        tone="claro"
+      >
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
+          <div className="space-y-6 text-lg leading-relaxed lg:w-1/2">
+            {PARRAFOS.map((parrafo) => (
+              <p key={parrafo.slice(0, 24)}>{parrafo}</p>
+            ))}
+          </div>
+
+          <div className="flex w-full flex-col gap-5 lg:w-1/2">
+            <VisorArchivo />
+            <ReproductorArchivo />
+          </div>
         </div>
       </Section>
     </main>
