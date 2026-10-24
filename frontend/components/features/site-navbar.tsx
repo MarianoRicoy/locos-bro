@@ -115,10 +115,15 @@ export function SiteNavbar() {
 
   return (
     <>
-      <header className={cn("fixed inset-x-0 top-0 z-50 h-24 bg-transparent", sobreClaro ? "text-black" : "text-white")}>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 h-24 backdrop-blur-sm transition-colors duration-500",
+          sobreClaro ? "bg-white/40 text-black" : "bg-black/40 text-white",
+        )}
+      >
         <nav
           aria-label="Navegación principal"
-          className="flex h-full items-center justify-between px-5 md:px-12"
+          className="mx-auto flex h-full w-full max-w-7xl items-center justify-between px-4 md:px-8"
         >
           <Link className="shrink-0" href="/">
             <Logo

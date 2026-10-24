@@ -94,8 +94,9 @@ h1 {
 /*
  * Cinco cuadrados en escritorio y dos en el celular, igual que el carrusel de PandaTech.
  * La pista duplicada se desplaza el 50 %: cada <li> lleva margin-right (no gap) para que
- * esa mitad sea exacta. No se pausa con el mouse; sí con foco o con la ficha abierta.
- * En escritorio cada cuadrado tarda 10 s en recorrer su ancho; en el celular, 5 s.
+ * esa mitad sea exacta. El movimiento lo maneja CarruselModelos (requestAnimationFrame)
+ * para que el borde de 1px caiga siempre sobre píxeles enteros: por eso el ancho de cada
+ * cuadrado se redondea a 1px.
  */
 .carrusel {
   container-type: inline-size;
@@ -104,43 +105,23 @@ h1 {
 .carrusel-pista {
   display: flex;
   width: max-content;
-  animation: carrusel-desplazar calc(var(--modelos, 12) * 5s) linear infinite;
 }
 
 .carrusel-pista > li {
-  width: calc((100cqw - 3px) / 2);
+  width: round(down, calc((100cqw - 3px) / 2), 1px);
   margin-right: 3px;
 }
 
 @media (min-width: 768px) {
-  .carrusel-pista {
-    animation-duration: calc(var(--modelos, 12) * 10s);
-  }
-
   .carrusel-pista > li {
-    width: calc((100cqw - 32px) / 5);
+    width: round(down, calc((100cqw - 32px) / 5), 1px);
     margin-right: 8px;
-  }
-}
-
-.carrusel:focus-within .carrusel-pista,
-.carrusel[data-pausado="true"] .carrusel-pista {
-  animation-play-state: paused;
-}
-
-@keyframes carrusel-desplazar {
-  to {
-    transform: translateX(-50%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .carrusel {
     overflow-x: auto;
-  }
-
-  .carrusel-pista {
-    animation: none;
   }
 
   .carrusel-copia {
@@ -154,18 +135,56 @@ h1 {
  * Empieza invisible y 27 px más abajo, y en 625 ms sube hasta su lugar.
  * Corre sola al cargar, sin esperar a JavaScript.
  */
-/* Negro plano a la izquierda y un violeta muy oscuro, apenas visible, a la derecha. */
+/*
+ * Negro plano a la izquierda y un violeta muy oscuro, apenas visible, a la derecha.
+ * El brillo va en un ::before aparte (inspirado en el video de fondo de PandaTech)
+ * para poder animarlo con solo transform/opacity: no redibuja el gradiente en
+ * cada cuadro, así que no cuesta nada de rendimiento.
+ */
 .logo-portada {
+  position: relative;
+  overflow: hidden;
   background-color: #000;
+}
+
+.logo-portada::before {
+  position: absolute;
+  z-index: 0;
+  content: "";
+  inset: -15%;
   background-image: radial-gradient(
     ellipse 85% 100% at 100% 46%,
     rgb(28, 12, 36) 0%,
     rgb(12, 8, 16) 32%,
     rgb(0, 0, 0) 58%
   );
+  animation: logo-portada-brillo 10s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes logo-portada-brillo {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08) translate(-1.5%, 1%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-portada::before {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .logo-entrada {
+  position: relative;
+  z-index: 1;
   filter: brightness(0) invert(1);
   animation: logo-entrada 625ms cubic-bezier(0.37, 0, 0.63, 1) both;
 }
@@ -187,6 +206,34 @@ h1 {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+}
+
+/* ---------- Revelado al hacer scroll ---------- */
+
+/*
+ * Fade + leve subida cuando el bloque entra en pantalla (igual que las
+ * secciones de texto de PandaTech). RevelaScroll agrega "revela-visible"
+ * la primera vez que el elemento se ve.
+ */
+.revela {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease-out,
+    transform 700ms ease-out;
+}
+
+.revela-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revela {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

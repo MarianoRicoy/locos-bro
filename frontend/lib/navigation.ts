@@ -7,7 +7,6 @@ export interface EnlaceNavegacion {
 export const ENLACES_PRINCIPALES: EnlaceNavegacion[] = [
   { label: "Inicio", href: "/" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Historia", href: "/historia" },
   { label: "Quiver", href: "/modelos" },
   { label: "La Fábrica", href: "/fabrica" },
   { label: "Contacto", href: "/contacto" },

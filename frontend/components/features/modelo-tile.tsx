@@ -48,7 +48,7 @@ export function ModeloTile({
         alt=""
         className={
           overlay === "titulo"
-            ? "object-contain p-2 transition-transform duration-300 group-hover/tile:scale-105 group-focus-visible/tile:scale-105"
+            ? "object-contain p-2 will-change-transform transition-transform duration-300 group-hover/tile:scale-105 group-focus-visible/tile:scale-105"
             : "-rotate-[28deg] object-contain p-3 transition-transform duration-300 group-hover/tile:-rotate-[22deg] group-hover/tile:scale-110 group-focus-visible/tile:-rotate-[22deg] group-focus-visible/tile:scale-110"
         }
         fill
@@ -57,9 +57,15 @@ export function ModeloTile({
       />
 
       {overlay === "titulo" ? (
-        <span className="pointer-events-none absolute bottom-4 left-4 text-left font-titulo text-[30px] font-normal leading-[1.1] text-white opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100 group-focus-visible/tile:opacity-100 [@media(hover:none)]:opacity-100">
-          {modelo.nombre}
-        </span>
+        <>
+          <span className="pointer-events-none absolute bottom-4 left-4 text-left font-titulo text-[30px] font-normal leading-[1.1] text-white opacity-0 transition-opacity duration-300 group-hover/tile:opacity-100 group-focus-visible/tile:opacity-100 [@media(hover:none)]:opacity-100">
+            {modelo.nombre}
+          </span>
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] ring-1 ring-inset ring-[#4d4d4d]"
+          />
+        </>
       ) : (
         <>
           {/* Hover / foco (solo dispositivos con mouse): logo del modelo sobre fondo oscuro. */}

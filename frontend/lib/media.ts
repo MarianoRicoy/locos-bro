@@ -38,21 +38,6 @@ export const IMAGENES = {
     src: "/images/fotos/lucas-1.jpg",
     alt: "Lucas surfeando un tubo en una tabla de Locos Bro",
   },
-  /** Fotos de archivo para /historia (formato horizontal 4:3 recomendado). */
-  historia: [
-    {
-      src: "/images/fotos/tablas-pared.jpg",
-      alt: "Tablas de Locos Bro apoyadas contra la pared del taller",
-    },
-    {
-      src: "/images/placeholders/taller.svg",
-      alt: "Foto de archivo: sesión de surf en Miramar",
-    },
-    {
-      src: "/images/placeholders/taller.svg",
-      alt: "Foto de archivo: tablas de Locos Bro apoyadas en la playa",
-    },
-  ],
   /** Fotos del taller / fábrica (formato horizontal 4:3 recomendado). */
   taller: [
     {

@@ -8,7 +8,6 @@ const RUTAS: Array<{
 }> = [
   { path: "", changeFrequency: "weekly", priority: 1.0 },
   { path: "/nosotros", changeFrequency: "monthly", priority: 0.8 },
-  { path: "/historia", changeFrequency: "monthly", priority: 0.8 },
   { path: "/modelos", changeFrequency: "weekly", priority: 0.9 },
   { path: "/fabrica", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contacto", changeFrequency: "monthly", priority: 0.8 },
