@@ -22,8 +22,7 @@ export function HeroSection() {
         </h1>
 
         <p className="max-w-xl text-lg leading-relaxed text-white/75">
-          Locos Bro es una fábrica de hermanos en Miramar. Shape, resina y años en el agua: sin vueltas
-          y sin humo.
+          Locos Bro es una fábrica de hermanos en Miramar. Shape, resina y años en el agua
         </p>
 
         <div className="flex flex-wrap gap-3 pt-1">

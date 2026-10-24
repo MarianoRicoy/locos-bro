@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 const PARRAFOS = [
-  `Locos Bro no nació de un plan de negocios, nació en el agua y en un galpón hace más de 22
+  `Locos Bro no nació de un plan de negocios, nació en el mar y en un galpón hace más de 22
   años. Al principio, éramos simplemente un grupo de amigos surfistas de la playa que nos
-  juntábamos a reparar nuestras propias tablas para poder seguir yendo al mar.`,
+  juntábamos a reparar nuestras propias tablas para poder seguir surfeando.`,
   `Con el tiempo, la necesidad y la curiosidad pudieron más, y junto a Lucas tomamos la decisión
   de empezar a fabricar. La primera tabla de nuestra historia fue para mi hijo Joaquín, que hoy
   ya tiene 23 años. El método fue pura autogestión: agarramos un longboard partido, lo
@@ -21,7 +21,7 @@ const PARRAFOS = [
   fibra, pero no teníamos ni idea de cómo shapear una tabla desde cero. Nuestra única escuela fue
   un video llamado "Shaping 101" que rebobinábamos y mirábamos una y otra vez en una casetera
   vieja. A base de prueba y error, de esa primera tabla pasamos a hacerle tablas a mi sobrino, a
-  mi hermano y a toda la banda de amigos.`,
+  mi hermano Agustin y a toda la banda de amigos.`,
   `Así se formó Locos Bro. Entre el polvo, la resina y los amigos, manteniendo hasta hoy la misma
   esencia: tablas hechas a mano por surfistas de alma.`,
 ];

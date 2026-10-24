@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ARCHIVO } from "@/lib/archivo";
 
 /** Tiempo en pantalla de cada foto antes de pasar a la siguiente. */
-const MS_FOTO = 3000;
+const MS_FOTO = 2000;
 /** Los videos duran ~6s; se les da un poco más de aire. */
 const MS_VIDEO = 8000;
 

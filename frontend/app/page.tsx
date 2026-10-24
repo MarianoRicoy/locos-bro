@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { ClientesTeaser } from "@/components/features/clientes-teaser";
 import { CustomOrderCta } from "@/components/features/custom-order-cta";
 import { FabricaTeaser } from "@/components/features/fabrica-teaser";
 import { HistoriaTeaser } from "@/components/features/historia-teaser";
@@ -19,6 +20,7 @@ export default function Home() {
       <QuiverDestacado />
       <HistoriaTeaser />
       <FabricaTeaser />
+      <ClientesTeaser />
       <CustomOrderCta />
     </main>
   );
